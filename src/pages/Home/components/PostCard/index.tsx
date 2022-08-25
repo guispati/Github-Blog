@@ -1,6 +1,6 @@
 import { PostInterface } from "../..";
 import { dateFormatterRelativeToNow } from "../../../../utils/formatter";
-import { PostContainer } from "./styles";
+import { PostAbstract, PostContainer, PostInfo } from "./styles";
 
 interface PostProps {
     post: PostInterface;
@@ -10,12 +10,12 @@ export function PostCard({ post }: PostProps) {
     const dateFormatted = dateFormatterRelativeToNow(post.created_at);
     return (
         <PostContainer to={`/post/${post.number}`}>
-            <div>
+            <PostInfo>
                 <strong>{post.title}</strong>
                 <span>{dateFormatted}</span>
-            </div>
+            </PostInfo>
 
-            <p>{post.body}</p>
+            <PostAbstract children={post.body} />
 
         </PostContainer>
     );

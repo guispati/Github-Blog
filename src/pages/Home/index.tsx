@@ -7,7 +7,6 @@ import { HomeContainer, PostList } from "./styles";
 
 export interface PostInterface {
     number: number;
-    html_url: string;
     title: string;
     created_at: string;
     body: string;
