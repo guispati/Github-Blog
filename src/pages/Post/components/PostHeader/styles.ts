@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { devices } from "../../../../styles/themes/default";
 
 export const PostHeaderContainer = styled.header`
     background: ${props => props.theme['base-profile']};
@@ -52,7 +53,14 @@ export const PostInfo = styled.div`
     ul {
         list-style: none;
         display: flex;
-        gap: 2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+
+        @media ${devices.tablet} {
+            flex-direction: row;
+            gap: 2rem;
+        }
 
         li {
             display: flex;

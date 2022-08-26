@@ -4,6 +4,7 @@ import { faArrowUpRightFromSquare, faCalendarDay, faComment, faChevronLeft } fro
 import { NavigationContainer, PostHeaderContainer, PostInfo } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { FullPost } from '../..';
+import { dateFormatterRelativeToNow } from '../../../../utils/formatter';
 
 interface PostHeaderProps {
     post: FullPost;
@@ -11,6 +12,7 @@ interface PostHeaderProps {
 
 export function PostHeader({ post }: PostHeaderProps) {
     const navigate = useNavigate();
+    const dateFormatted = dateFormatterRelativeToNow(post.created_at);
 
     return (
         <PostHeaderContainer>
@@ -35,7 +37,7 @@ export function PostHeader({ post }: PostHeaderProps) {
 
                     <li>
                         <FontAwesomeIcon icon={faCalendarDay} />
-                        <span>{post.created_at}</span>
+                        <span>{dateFormatted}</span>
                     </li>
 
                     <li>

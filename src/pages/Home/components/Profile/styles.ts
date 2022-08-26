@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { devices } from "../../../../styles/themes/default";
 
 export const ProfileContainer = styled.header`
     background: ${props => props.theme['base-profile']};
@@ -7,8 +8,14 @@ export const ProfileContainer = styled.header`
     box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 2rem;
+    flex-wrap: wrap;
+
+    @media ${devices.laptopL} {
+        justify-content: space-between;
+        flex-wrap: nowrap;
+    }
 
     img {
         width: 9.25rem;
@@ -23,6 +30,7 @@ export const ProfileInfo = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    width: 100%;
 
     > div {
         display: flex;
@@ -61,8 +69,14 @@ export const ProfileInfo = styled.div`
     ul {
         list-style: none;
         display: flex;
-        gap: 1.5rem;
+        gap: 0.5rem;
         margin-top: 1rem;
+        flex-direction: column;
+
+        @media ${devices.laptopL} {
+            flex-direction: row;
+            gap: 1.5rem;
+        }
 
         li {
             display: flex;
