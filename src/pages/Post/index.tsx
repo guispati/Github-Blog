@@ -18,12 +18,19 @@ export interface FullPost {
 
 export function Post() {
     const [post, setPost] = useState<FullPost>({} as FullPost);
+    const [isLoading, setIsLoading] = useState(true);
     const { id } = useParams();
 
     const fetchPost = useCallback(async () => {
-        const response = await api.get(`repos/${githubUsername}/${githubRepo}/issues/${id}`);
-
-        setPost(response.data);
+        try {
+            setIsLoading(true);
+        
+            const response = await api.get(`repos/${githubUsername}/${githubRepo}/issues/${id}`);
+        
+            setPost(response.data);
+        } finally {
+            setIsLoading(false);
+        }
     }, []);
 
     useEffect(() => {
@@ -32,9 +39,12 @@ export function Post() {
 
     return (
         <PostContainer>
-            <PostHeader post={post} />
-
-            <PostContent body={post.body} />
+            {!isLoading && (
+                <>
+                    <PostHeader post={post} />
+                    <PostContent body={post.body} />
+                </>
+            )}
         </PostContainer>
     )
 }
